@@ -1,0 +1,31 @@
+<article>
+    <div class="list--header"> 
+        <h1 class="text-center">My To-Do List</h1>
+        <div class="form-group">
+            <label for="sorting">Sort by</label>
+            <select name="sortBy" id="sortBy" class="dropdown" [(ngModel)]="sortBy" (change)="sort(sortBy)">
+                <option value="chronilogical" selected>Chronological</option>
+                <option value="priority">Priority</option>
+                <option value="alphabetical">Alphabetical</option>
+                <option value="completed">Completed</option>
+            </select>
+        </div>
+    </div>
+    <ul *ngIf="todoList">
+        <li *ngFor="let task of todoList; let i = index" class="task-item">
+            <span [class.complete]="task.completed">{{ i + 1 }}. {{ task.name }}</span>
+            <span class="priority-tag priority-{{ task.priority }} {{ task.completed ? 'completed' : '' }}">
+            {{ task.priority == 0 ? 'Low' : task.priority == 1 ? 'Medium' : 'High' }}
+            </span>
+            <span class="status">
+            {{ task.completed ? '✓ Done' : 'In Progress' }}
+            </span>
+
+            <div class="task-buttons">
+            <button class="complete-btn" (click)="toggleComplete(task)">✔</button>
+            <button class="delete-btn" (click)="removeTask(task.id)">✖</button>
+            </div>
+        </li>
+    </ul>
+    <app-add-task (onNewTask)="addTaskToList($event)" />
+</article>

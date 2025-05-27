@@ -1,0 +1,20 @@
+/* Apply border-box to all elements and pseudo-elements */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Ensure we're always covering the full height of the window. Establish base font size (1rem = 16px)  */
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+}
+
+/* Prevent horizontal scrolling. Set font as well as bottom layer background color */
+main {
+  font-family: 'Lato', sans-serif;
+  background-color: #FFFDD0;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
